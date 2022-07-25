@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../data.dart';
+import '../widgets/meal_card.dart';
+
 class CategoryScreenArgs {
   final String id;
   final String title;
@@ -20,12 +23,21 @@ class CategoryScreen extends StatelessWidget {
     final routeArgs =
         ModalRoute.of(context)!.settings.arguments as CategoryScreenArgs;
 
+    final categoryMeals = dummyMeals
+        .where(
+          (meal) => meal.categories.contains(routeArgs.id),
+        )
+        .toList();
+
     return Scaffold(
       appBar: AppBar(
         title: Text(routeArgs.title),
       ),
-      body: const Center(
-        child: Text('M E A L S'),
+      body: Center(
+        child: ListView.builder(
+          itemBuilder: (ctx, i) => MealCard(categoryMeals[i]),
+          itemCount: categoryMeals.length,
+        ),
       ),
     );
   }

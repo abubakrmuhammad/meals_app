@@ -28,7 +28,7 @@ class CategoryCard extends StatelessWidget {
       borderRadius: BorderRadius.circular(15),
       splashColor: Theme.of(context).primaryColor,
       child: Card(
-        elevation: 3,
+        elevation: 0,
         shadowColor: color.withOpacity(1),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         clipBehavior: Clip.antiAlias,
