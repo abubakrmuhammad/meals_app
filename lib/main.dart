@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './screens/categories_screen.dart';
+import './screens/category_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,6 +34,9 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color.fromRGBO(255, 254, 229, 1),
       ),
       home: const CategoriesScreen(),
+      routes: {
+        CategoryScreen.routeName: (ctx) => const CategoryScreen(),
+      },
     );
   }
 }
