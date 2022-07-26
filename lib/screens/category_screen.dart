@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../data.dart';
+import '../models/meal.dart';
+
 import '../widgets/meal_card.dart';
 
 class CategoryScreenArgs {
@@ -16,14 +17,19 @@ class CategoryScreenArgs {
 class CategoryScreen extends StatelessWidget {
   static const routeName = '/category';
 
-  const CategoryScreen({Key? key}) : super(key: key);
+  final List<Meal> meals;
+
+  const CategoryScreen(
+    this.meals, {
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final routeArgs =
         ModalRoute.of(context)!.settings.arguments as CategoryScreenArgs;
 
-    final categoryMeals = dummyMeals
+    final categoryMeals = meals
         .where(
           (meal) => meal.categories.contains(routeArgs.id),
         )

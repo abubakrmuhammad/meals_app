@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:meals_app/models/filters.dart';
 
 import '../widgets/main_drawer.dart';
 
 class FiltersScreen extends StatefulWidget {
   static const routeName = '/filters';
 
-  const FiltersScreen({Key? key}) : super(key: key);
+  final Filters filters;
+  final void Function(Filters) updateFilters;
+
+  const FiltersScreen({
+    required this.filters,
+    required this.updateFilters,
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<FiltersScreen> createState() => _FiltersScreenState();
@@ -13,14 +21,35 @@ class FiltersScreen extends StatefulWidget {
 
 class _FiltersScreenState extends State<FiltersScreen> {
   bool _glutenFree = false;
+  bool _lactoseFree = false;
   bool _vegetarian = false;
   bool _vegan = false;
-  bool _lactoseFree = false;
+
+  @override
+  void initState() {
+    _glutenFree = widget.filters.glutenFree;
+    _lactoseFree = widget.filters.lactoseFree;
+    _vegan = widget.filters.vegan;
+    _vegetarian = widget.filters.vegetarian;
+
+    super.initState();
+  }
+
+  void saveFilters() {
+    Filters updatedFilters = Filters(
+      glutenFree: _glutenFree,
+      lactoseFree: _lactoseFree,
+      vegetarian: _vegetarian,
+      vegan: _vegan,
+    );
+
+    widget.updateFilters(updatedFilters);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Filters')),
+      appBar: AppBar(title: const Text('Filters')),
       drawer: const MainDrawer(),
       body: Column(children: [
         Padding(
@@ -39,6 +68,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                 subtitleText: 'Only include gluten-free meals.',
                 updateHandler: (val) => setState(() {
                   _glutenFree = val;
+                  saveFilters();
                 }),
               ),
               _MySwitchListTile(
@@ -47,6 +77,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                 subtitleText: 'Only include lactose-free meals.',
                 updateHandler: (val) => setState(() {
                   _lactoseFree = val;
+                  saveFilters();
                 }),
               ),
               _MySwitchListTile(
@@ -55,6 +86,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                 subtitleText: 'Only include Vegan meals.',
                 updateHandler: (val) => setState(() {
                   _vegan = val;
+                  saveFilters();
                 }),
               ),
               _MySwitchListTile(
@@ -63,6 +95,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                 subtitleText: 'Only include vegetarian meals.',
                 updateHandler: (val) => setState(() {
                   _vegetarian = val;
+                  saveFilters();
                 }),
               ),
             ],
