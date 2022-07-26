@@ -24,6 +24,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Filters _filters = Filters();
   List<Meal> _filteredMeals = dummyMeals;
+  List<Meal> _favoriteMeals = [];
 
   void updateFilters(Filters newFilters) {
     setState(() {
@@ -38,6 +39,24 @@ class _MyAppState extends State<MyApp> {
       }).toList();
     });
   }
+
+  void _toggleFavorite(String mealId) {
+    final existingIndex =
+        _favoriteMeals.indexWhere((meal) => meal.id == mealId);
+
+    setState(() {
+      if (existingIndex >= 0) {
+        _favoriteMeals.removeAt(existingIndex);
+      } else {
+        final mealToAdd = dummyMeals.firstWhere((meal) => meal.id == mealId);
+
+        _favoriteMeals.add(mealToAdd);
+      }
+    });
+  }
+
+  bool _isFavoriteMeal(String mealId) =>
+      _favoriteMeals.any((meal) => meal.id == mealId);
 
   @override
   Widget build(BuildContext context) {
@@ -63,10 +82,15 @@ class _MyAppState extends State<MyApp> {
             ),
         scaffoldBackgroundColor: const Color.fromRGBO(255, 254, 229, 1),
       ),
-      home: const TabsScreen(),
+      home: TabsScreen(
+        favoriteMeals: _favoriteMeals,
+      ),
       routes: {
         CategoryScreen.routeName: (ctx) => CategoryScreen(_filteredMeals),
-        MealScreen.routeName: (ctx) => const MealScreen(),
+        MealScreen.routeName: (ctx) => MealScreen(
+              toggleFavorite: _toggleFavorite,
+              isFavoriteMeal: _isFavoriteMeal,
+            ),
         FiltersScreen.routeName: (ctx) => FiltersScreen(
               filters: _filters,
               updateFilters: updateFilters,
