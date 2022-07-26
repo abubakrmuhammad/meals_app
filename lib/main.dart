@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import './screens/tabs_screen.dart';
 import './screens/category_screen.dart';
+import './screens/filters_screen.dart';
 import './screens/meal_screen.dart';
 
 void main() {
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
                 fontSize: 16,
                 color: Color.fromRGBO(20, 51, 51, 1),
               ),
-              titleMedium: TextStyle(
+              titleLarge: TextStyle(
                 color: Colors.grey[900],
                 fontSize: 24,
                 fontFamily: 'RobotoCondensed',
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
       routes: {
         CategoryScreen.routeName: (ctx) => const CategoryScreen(),
         MealScreen.routeName: (ctx) => const MealScreen(),
+        FiltersScreen.routeName: (ctx) => const FiltersScreen(),
       },
     );
   }

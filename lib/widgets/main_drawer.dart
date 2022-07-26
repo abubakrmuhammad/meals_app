@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../screens/filters_screen.dart';
+
 class MainDrawer extends StatelessWidget {
   const MainDrawer({Key? key}) : super(key: key);
 
@@ -28,11 +30,13 @@ class MainDrawer extends StatelessWidget {
           const DrawerItem(
             icon: Icons.restaurant,
             text: 'Meals',
+            routeName: '/',
           ),
           const SizedBox(height: 6),
           const DrawerItem(
             icon: Icons.settings,
             text: 'Filters',
+            routeName: FiltersScreen.routeName,
           ),
         ],
       ),
@@ -43,10 +47,12 @@ class MainDrawer extends StatelessWidget {
 class DrawerItem extends StatelessWidget {
   final IconData icon;
   final String text;
+  final String routeName;
 
   const DrawerItem({
     required this.icon,
     required this.text,
+    required this.routeName,
     Key? key,
   }) : super(key: key);
 
@@ -58,7 +64,9 @@ class DrawerItem extends StatelessWidget {
         text,
         style: const TextStyle(fontSize: 18),
       ),
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).pushReplacementNamed(routeName);
+      },
     );
   }
 }

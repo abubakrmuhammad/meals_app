@@ -148,7 +148,7 @@ class MealDetailTitle extends StatelessWidget {
       margin: const EdgeInsets.fromLTRB(0, 10, 0, 20),
       child: Text(
         text,
-        style: Theme.of(context).textTheme.titleMedium!.copyWith(fontSize: 36),
+        style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 36),
       ),
     );
   }
