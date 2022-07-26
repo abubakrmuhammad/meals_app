@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import './categories_screen.dart';
 import './favorites_screen.dart';
+import '../widgets/main_drawer.dart';
 
 class TabsScreen extends StatelessWidget {
   const TabsScreen({Key? key}) : super(key: key);
@@ -12,6 +13,7 @@ class TabsScreen extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
+          toolbarHeight: 70,
           title: const Text('Meals App'),
           bottom: const TabBar(
             tabs: [
@@ -26,6 +28,7 @@ class TabsScreen extends StatelessWidget {
             ],
           ),
         ),
+        drawer: const MainDrawer(),
         body: const TabBarView(children: [
           CategoriesScreen(),
           FavoritesScreen(),
