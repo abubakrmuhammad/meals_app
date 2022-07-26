@@ -27,13 +27,13 @@ class MainDrawer extends StatelessWidget {
               ),
             ),
           ),
-          const DrawerItem(
+          const _DrawerItem(
             icon: Icons.restaurant,
             text: 'Meals',
             routeName: '/',
           ),
           const SizedBox(height: 6),
-          const DrawerItem(
+          const _DrawerItem(
             icon: Icons.settings,
             text: 'Filters',
             routeName: FiltersScreen.routeName,
@@ -44,12 +44,12 @@ class MainDrawer extends StatelessWidget {
   }
 }
 
-class DrawerItem extends StatelessWidget {
+class _DrawerItem extends StatelessWidget {
   final IconData icon;
   final String text;
   final String routeName;
 
-  const DrawerItem({
+  const _DrawerItem({
     required this.icon,
     required this.text,
     required this.routeName,

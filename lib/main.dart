@@ -24,7 +24,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Filters _filters = Filters();
   List<Meal> _filteredMeals = dummyMeals;
-  List<Meal> _favoriteMeals = [];
+  final List<Meal> _favoriteMeals = [];
 
   void updateFilters(Filters newFilters) {
     setState(() {

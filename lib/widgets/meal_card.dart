@@ -88,15 +88,15 @@ class MealCard extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    MealCardDetail(
+                    _MealCardDetail(
                       icon: Icons.schedule,
                       text: '${meal.duration} min',
                     ),
-                    MealCardDetail(
+                    _MealCardDetail(
                       icon: Icons.work_outline,
                       text: complexityText,
                     ),
-                    MealCardDetail(
+                    _MealCardDetail(
                       icon: Icons.attach_money,
                       text: affordabilityText,
                     ),
@@ -109,8 +109,8 @@ class MealCard extends StatelessWidget {
   }
 }
 
-class MealCardDetail extends StatelessWidget {
-  const MealCardDetail({
+class _MealCardDetail extends StatelessWidget {
+  const _MealCardDetail({
     Key? key,
     required this.text,
     required this.icon,

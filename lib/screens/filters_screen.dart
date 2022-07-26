@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:meals_app/models/filters.dart';
+
+import '../models/filters.dart';
 
 import '../widgets/main_drawer.dart';
 

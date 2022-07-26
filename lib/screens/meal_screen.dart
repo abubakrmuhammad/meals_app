@@ -23,7 +23,7 @@ class MealScreen extends StatelessWidget {
       final amount = splitted[0];
       final name = splitted.sublist(1).join(' ');
 
-      return Ingredient(amount: amount, name: name);
+      return _Ingredient(amount: amount, name: name);
     }).toList();
 
     return Scaffold(
@@ -72,19 +72,19 @@ class MealScreen extends StatelessWidget {
               child: Column(
                 // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const MealDetailTitle('Ingredients'),
+                  const _MealDetailTitle('Ingredients'),
                   GridView.builder(
                     itemCount: ingredients.length,
                     gridDelegate:
                         const SliverGridDelegateWithMaxCrossAxisExtent(
                       maxCrossAxisExtent: 200,
                     ),
-                    itemBuilder: (ctx, i) => IngredientCard(ingredients[i]),
+                    itemBuilder: (ctx, i) => _IngredientCard(ingredients[i]),
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     // childAspectRatio: 4 / 3,
                   ),
-                  const MealDetailTitle('Instructions'),
+                  const _MealDetailTitle('Instructions'),
                   Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -96,7 +96,7 @@ class MealScreen extends StatelessWidget {
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: ((ctx, i) => Column(
                               children: [
-                                MealInstruction(
+                                _MealInstruction(
                                   index: i,
                                   text: meal.steps[i],
                                 ),
@@ -123,11 +123,11 @@ class MealScreen extends StatelessWidget {
   }
 }
 
-class MealInstruction extends StatelessWidget {
+class _MealInstruction extends StatelessWidget {
   final int index;
   final String text;
 
-  const MealInstruction({
+  const _MealInstruction({
     required this.index,
     required this.text,
     Key? key,
@@ -137,6 +137,8 @@ class MealInstruction extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: CircleAvatar(
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        foregroundColor: Colors.white,
         child: Text('# ${index + 1}'),
       ),
       title: Text(
@@ -147,10 +149,10 @@ class MealInstruction extends StatelessWidget {
   }
 }
 
-class MealDetailTitle extends StatelessWidget {
+class _MealDetailTitle extends StatelessWidget {
   final String text;
 
-  const MealDetailTitle(
+  const _MealDetailTitle(
     this.text, {
     Key? key,
   }) : super(key: key);
@@ -167,10 +169,10 @@ class MealDetailTitle extends StatelessWidget {
   }
 }
 
-class IngredientCard extends StatelessWidget {
-  final Ingredient ing;
+class _IngredientCard extends StatelessWidget {
+  final _Ingredient ing;
 
-  const IngredientCard(
+  const _IngredientCard(
     this.ing, {
     Key? key,
   }) : super(key: key);
@@ -215,9 +217,9 @@ class IngredientCard extends StatelessWidget {
   }
 }
 
-class Ingredient {
+class _Ingredient {
   final String amount;
   final String name;
 
-  const Ingredient({required this.amount, required this.name});
+  const _Ingredient({required this.amount, required this.name});
 }

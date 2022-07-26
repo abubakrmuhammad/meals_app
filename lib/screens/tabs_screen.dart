@@ -24,11 +24,11 @@ class TabsScreen extends StatelessWidget {
           title: const Text('Meals App'),
           bottom: const TabBar(
             tabs: [
-              MyTab(
+              _MyTab(
                 icon: Icons.category,
                 text: 'Categories',
               ),
-              MyTab(
+              _MyTab(
                 icon: Icons.star,
                 text: 'Favorites',
               ),
@@ -45,11 +45,11 @@ class TabsScreen extends StatelessWidget {
   }
 }
 
-class MyTab extends StatelessWidget {
+class _MyTab extends StatelessWidget {
   final IconData icon;
   final String text;
 
-  const MyTab({
+  const _MyTab({
     required this.icon,
     required this.text,
     Key? key,
